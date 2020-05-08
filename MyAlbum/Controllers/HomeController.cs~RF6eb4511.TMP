@@ -1,0 +1,74 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace MyAlbum.Controllers
+{
+    public class HomeController : Controller
+    {
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        public ActionResult Create1()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create1(HttpPostedFileBase[] files)
+        {
+            return View();
+        }
+        [HttpPost]
+        public JsonResult UploadByAjax()
+        {
+            var files = Request.Files;
+            // 先判斷相簿名稱
+            //string aa = System.Web.HttpContext.Current.Request.QueryString["name"];
+
+            //取得目前 HTTP 要求的 HttpRequestBase 物件
+            foreach (string file in Request.Files)
+            {
+                var fileContent = Request.Files[file];
+                if (fileContent != null && fileContent.ContentLength > 0)
+                {
+                    // 取得的檔案是stream
+                    var stream = fileContent.InputStream;
+                    var fileName = Path.GetFileName(file);
+                    //var path = Server.MapPath("~/Album");
+                    var path = Path.Combine(Server.MapPath("~/Album/"), fileName);
+
+
+                    if (Directory.Exists(Server.MapPath("~/Album/")))
+                    {
+                        //資料夾存在
+                    }
+                    else
+                    {
+                        //新增資料夾
+                        Directory.CreateDirectory(@"D:\temp\");
+                    }
+
+
+
+                    using (var fileStream = System.IO.File.Create(path))
+                    {
+                        stream.CopyTo(fileStream);
+                    }
+                }
+            }
+
+            return Json("Successed");
+        }
+    }
+}

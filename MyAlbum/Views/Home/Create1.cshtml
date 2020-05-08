@@ -1,0 +1,189 @@
+﻿
+@{
+    ViewBag.Title = "Create1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create1</h2>
+
+<script type="text/javascript">
+    var fd = new FormData();
+
+    function dragoverHandler(evt) {
+        evt.preventDefault();
+    }
+    function dropHandler(evt) {//evt 為 DragEvent 物件
+        evt.preventDefault();
+        let files = evt.dataTransfer.files;//由DataTransfer物件的files屬性取得檔案物件
+
+        let aa = 0;
+        for (let i in files) {
+            if (files[i].type == 'image/png' || files[i].type == 'image/jpeg') {
+
+                //將圖片在頁面預覽
+                let fr = new FileReader();
+                fr.onload = openfile(files[i]);
+                fr.readAsDataURL;
+                //新增上傳檔案，上傳後名稱為圖檔的陣列
+                fd.append(files[i].name, files[i]);
+                aa++;
+            }
+        }
+    }
+    var count = 0;
+    async function openfile(tr) {
+        // await優先跑這段
+        let img = await toBase64(tr);//將圖片轉成base64
+        //console.log(tr.name);
+        let imgx = document.createElement('img');
+        imgx.style.margin = "10px";
+        imgx.src = img;
+
+        let photo = $(document.createElement('div')).attr({
+            "class": 'photo-list',
+            "id": 'list-' + count,
+            "name": tr.name
+        });
+
+        $('#imgDIV').append(photo);
+        photo.append('<div class="close" id="close-' + count + '"></div>');
+        photo.append(imgx);
+        photo.append('<div class="progress-label"></div>');
+        count++;
+    }
+
+    // 抓file的內容
+    const toBase64 = file => new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+
+    $("body").on("click", ".close", function (evt) {
+        let id = '#' + evt.target.id;
+        let idd = $(id).parent()[0].id;
+        let iddname = $('#' + idd).attr('name');
+
+        // 依照檔名刪除陣列
+        fd.delete(iddname);
+        $('#' + idd).remove();
+    });
+
+
+    //    console.log(2);
+
+    //    await function files() {
+    //        $.ajax({
+    //            type: "POST",
+    //            url: '/Home/UploadByAjax',
+    //            contentType: false,
+    //            processData: false,
+    //            data: fd,
+    //            success: function (result) {
+    //                console.log(result);
+    //            },
+    //            error: function (xhr, status, error) {
+    //                alert(xhr.responseText);
+    //                //console.log("上傳失敗");
+    //            }
+    //        });
+    //    }
+    //}
+
+
+
+    async function Upload() {
+        // async/await 需搭配return使用，有回傳才往下跑
+        let mes = await Albumname($('#filename').val());
+        //console.log(mes);
+        alert(mes);
+        //if (mes == '')
+        //    files();
+        //else
+        //    alert(mes);
+
+
+    }
+
+    let Albumname = (filename) => {
+        let mes = '';
+
+        $.ajax({
+            type: "POST",
+            // 預設true，是同步執行狀態，false非同步執行完成才往下跑
+            async: false,
+            url: "/Home/Albumname?filename=" + filename,
+            data: fd,
+            processData: false,
+            contentType: false,
+            success: function (result) {
+                mes = result;
+            },
+            error: function (xhr, status, error) {
+                alert(xhr.responseText);
+                mes = 'fales error!!';
+                //console.log("上傳失敗");
+            }
+        });
+        return mes;
+    };
+
+
+
+    //// Album insert/update
+    //let Albumname = (filename) => {
+    //    let mes = '';
+    //    $.ajax({
+    //        type: "POST",
+    //        // 預設true，是同步執行狀態，false非同步執行完成才往下跑
+    //        async: false,
+    //        url: '/Home/Albumname',
+    //        data: { filename: filename },
+    //        success: function (result) {
+    //            if (result == 'The filename has existed')
+    //                mes = result;
+    //        },
+    //        error: function (xhr, status, error) {
+    //            alert(xhr.responseText);
+    //            mes = 'fales';
+    //            //console.log("上傳失敗");
+    //        }
+    //    });
+    //    return mes;
+    //};
+
+    //// files update
+    //let files = () => {
+    //    $.ajax({
+    //        type: "POST",
+    //        url: '/Home/UploadByAjax',
+    //        contentType: false,
+    //        processData: false,
+    //        data: fd,
+    //        success: function (result) {
+    //            console.log(result);
+    //        },
+    //        error: function (xhr, status, error) {
+    //            alert(xhr.responseText);
+    //            //console.log("上傳失敗");
+    //        }
+    //    });
+    //};
+
+
+
+</script>
+
+<div id="DIV1">
+    <button class="btn btn-outline-success" onclick="Upload()">Upload</button>
+</div>
+<div id="DIV2">
+    <input type="text" class="form-control" id="filename" placeholder="輸入相簿名稱" value="">
+</div>
+<div id="dropDIV" ondragover="dragoverHandler(event)" ondrop="dropHandler(event)">
+    <div style="text-align:center">Drop files here</div>
+
+    <div id="imgDIV"></div>
+</div>
+

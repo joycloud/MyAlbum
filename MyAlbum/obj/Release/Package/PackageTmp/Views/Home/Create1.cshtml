@@ -1,0 +1,185 @@
+﻿
+@{
+    ViewBag.Title = "Create1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create1</h2>
+
+<script type="text/javascript">
+    var fd = new FormData();
+
+    function dragoverHandler(evt) {
+        evt.preventDefault();
+    }
+    function dropHandler(evt) {//evt 為 DragEvent 物件
+        evt.preventDefault();
+        let files = evt.dataTransfer.files;//由DataTransfer物件的files屬性取得檔案物件
+
+        let aa = 0;
+        for (let i in files) {
+            if (files[i].type == 'image/png' || files[i].type == 'image/jpeg') {
+
+                //將圖片在頁面預覽
+                let fr = new FileReader();
+                fr.onload = openfile(files[i]);
+                fr.readAsDataURL;
+                //新增上傳檔案，上傳後名稱為圖檔的陣列
+                fd.append(files[i].name, files[i]);
+                aa++;
+            }
+        }
+    }
+    var count = 0;
+    async function openfile(tr) {
+        // await優先跑這段
+        let img = await toBase64(tr);//將圖片轉成base64
+        //console.log(tr.name);
+        let imgx = document.createElement('img');
+        imgx.style.margin = "10px";
+        imgx.src = img;
+
+        let photo = $(document.createElement('div')).attr({
+            "class": 'photo-list',
+            "id": 'list-' + count,
+            "name": tr.name
+        });
+
+        $('#imgDIV').append(photo);
+        photo.append('<div class="close" id="close-' + count + '"></div>');
+        photo.append(imgx);
+        photo.append('<div class="progress-label"></div>');
+        count++;
+    }
+
+    // 抓file的內容
+    const toBase64 = file => new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+
+    $("body").on("click", ".close", function (evt) {
+        let id = '#' + evt.target.id;
+        let idd = $(id).parent()[0].id;
+        let iddname = $('#' + idd).attr('name');
+
+
+        //for (var pair of fd.entries()) {
+        //    console.log(pair[1]);
+        //}
+
+        // 依照檔名刪除陣列
+        fd.delete(iddname);
+
+        //console.log(fd);
+        //for (var pair of fd.entries()) {
+        //    console.log(pair[0]);
+        //}
+        // delete div
+        $('#' + idd).remove();
+    });
+
+    function Upload() {
+
+         $.ajax({
+                type: "POST",
+                url: '/Home/UploadByAjax',
+                contentType: false,
+                processData: false,
+                data: fd,
+                success: function (result) {
+                       console.log(result);
+                       },
+                       error: function (xhr, status) {
+                       console.log("上傳失敗");
+                       }
+              });
+    }
+
+    ////顯示圖片縮圖用
+    //let createImgTag = async (files) => {
+    //    let convertImg = await toBase64(files),//將圖片轉成base64
+    //        fileTag = document.createElement('img');//建立img元素
+
+    //    fileTag.src = convertImg;//指定元素連結
+
+    //    return fileTag;
+    //};
+
+
+    //    let img = evt.target.result;
+    //    let imgx = document.createElement('img');
+    //    imgx.style.margin = "10px";
+    //    imgx.src = img;
+
+    //    let photo = $(document.createElement('div')).attr({
+    //        "class": 'photo-list',
+    //        "id": 'list-' + count
+    //    });
+
+    //    $('#imgDIV').append(photo);
+    //    photo.append('<div class="close" id="close-' + count + '"></div>');
+    //    photo.append(imgx);
+    //    photo.append('<div class="progress-label"></div>');
+    //    count++;
+    //}
+
+    //$("body").on("click", ".close", function (evt) {
+    //    let id = evt.target.id;
+    //    //let idd = $('#' + id).parent().attr('id');
+    //    let idd = $('#' + id).parent()[0].id;
+    //    console.log($("#" + idd));
+    //    // delete div
+    //    $("#" + idd).remove();
+    //});
+
+
+    //$(function () {
+    //        var progressbar = $("#progressbar"),
+    //            progressLabel = $(".progress-label");
+
+    //        progressbar.progressbar({
+    //            value: false,
+    //            change: function () {
+    //                progressLabel.text(progressbar.progressbar("value") + "%");
+    //            },
+    //            complete: function () {
+    //                progressLabel.text("完成！");
+    //            }
+    //        });
+
+    //        function progress() {
+    //            var val = progressbar.progressbar("value") || 0;
+
+    //            progressbar.progressbar("value", val + 1);
+
+    //            if (val < 99) {
+    //                setTimeout(progress, 100);
+    //            }
+    //        }
+
+    //        setTimeout(progress, 3000);
+    //    });
+
+
+
+    //function appendText() {
+    //    var txt1 = "<p>Text.</p>";        // Create text with HTML
+    //    var txt2 = $("<p></p>").text("Text.");  // Create text with jQuery
+    //    var txt3 = document.createElement("p");
+    //    txt3.innerHTML = "Text.";         // Create text with DOM
+    //    $("body").append(txt1, txt2, txt3);   // Append new elements
+    //}
+
+</script>
+
+<div>
+    <button class="btn btn-outline-success" onclick="Upload()">Upload</button>
+</div>
+<div id="dropDIV" ondragover="dragoverHandler(event)" ondrop="dropHandler(event)">
+    <div style="text-align:center">Drop files here</div>
+
+    <div id="imgDIV"></div>
+</div>

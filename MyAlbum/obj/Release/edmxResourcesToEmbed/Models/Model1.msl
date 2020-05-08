@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MISModelStoreContainer" CdmEntityContainer="MISEntities">
+    <EntitySetMapping Name="Album">
+      <EntityTypeMapping TypeName="MISModel.Album">
+        <MappingFragment StoreEntitySet="Album">
+          <ScalarProperty Name="SN" ColumnName="SN" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Permission" ColumnName="Permission" />
+          <ScalarProperty Name="Path1" ColumnName="Path1" />
+          <ScalarProperty Name="Path2" ColumnName="Path2" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="download" ColumnName="download" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comm_Account">
+      <EntityTypeMapping TypeName="MISModel.Comm_Account">
+        <MappingFragment StoreEntitySet="Comm_Account">
+          <ScalarProperty Name="Permission" ColumnName="Permission" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SN" ColumnName="SN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
