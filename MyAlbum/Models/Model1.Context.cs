@@ -25,7 +25,8 @@ namespace MyAlbum.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Album> Album { get; set; }
         public virtual DbSet<Comm_Account> Comm_Account { get; set; }
+        public virtual DbSet<Album> Album { get; set; }
+        public virtual DbSet<AlbumPicture> AlbumPicture { get; set; }
     }
 }

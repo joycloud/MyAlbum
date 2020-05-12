@@ -13,10 +13,30 @@
           <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" />
           <Property Name="Permission" Type="int" />
-          <Property Name="Path1" Type="nvarchar(max)" />
-          <Property Name="Path2" Type="nvarchar(max)" />
-          <Property Name="Picture" Type="nvarchar(max)" />
+          <Property Name="Path" Type="nvarchar(max)" />
           <Property Name="download" Type="varchar" MaxLength="1" />
+          <Property Name="sctrl" Type="varchar" MaxLength="1" />
+          <Property Name="remark" Type="nvarchar" MaxLength="500" />
+          <Property Name="cruser" Type="varchar" MaxLength="10" />
+          <Property Name="crdate" Type="datetime" />
+          <Property Name="eduser" Type="varchar" MaxLength="10" />
+          <Property Name="eddate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="AlbumPicture">
+          <Key>
+            <PropertyRef Name="SN" />
+            <PropertyRef Name="idnum" />
+          </Key>
+          <Property Name="SN" Type="int" Nullable="false" />
+          <Property Name="idnum" Type="int" Nullable="false" />
+          <Property Name="sctrl" Type="varchar" MaxLength="1" />
+          <Property Name="path" Type="nvarchar(max)" />
+          <Property Name="picturefile" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="remark" Type="nvarchar" MaxLength="500" />
+          <Property Name="cruser" Type="varchar" MaxLength="10" />
+          <Property Name="crdate" Type="datetime" />
+          <Property Name="eduser" Type="varchar" MaxLength="10" />
+          <Property Name="eddate" Type="datetime" />
         </EntityType>
         <EntityType Name="Comm_Account">
           <Key>
@@ -30,28 +50,17 @@
         </EntityType>
         <EntityContainer Name="MISModelStoreContainer">
           <EntitySet Name="Album" EntityType="Self.Album" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AlbumPicture" EntityType="Self.AlbumPicture" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comm_Account" EntityType="Self.Comm_Account" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MISModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Album">
-          <Key>
-            <PropertyRef Name="SN" />
-          </Key>
-          <Property Name="SN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Permission" Type="Int32" />
-          <Property Name="Path1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Path2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="download" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityContainer Name="MISEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Album" EntityType="Self.Album" />
           <EntitySet Name="Comm_Account" EntityType="MISModel.Comm_Account" />
+          <EntitySet Name="Album" EntityType="MISModel.Album" />
+          <EntitySet Name="AlbumPicture" EntityType="MISModel.AlbumPicture" />
         </EntityContainer>
         <EntityType Name="Comm_Account">
           <Key>
@@ -63,26 +72,45 @@
           <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Permission" Type="Int32" />
         </EntityType>
+        <EntityType Name="Album">
+          <Key>
+            <PropertyRef Name="SN" />
+          </Key>
+          <Property Name="SN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Permission" Type="Int32" />
+          <Property Name="Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="download" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="sctrl" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="remark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="cruser" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="crdate" Type="DateTime" Precision="3" />
+          <Property Name="eduser" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="eddate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="AlbumPicture">
+          <Key>
+            <PropertyRef Name="SN" />
+            <PropertyRef Name="idnum" />
+          </Key>
+          <Property Name="SN" Type="Int32" Nullable="false" />
+          <Property Name="idnum" Type="Int32" Nullable="false" />
+          <Property Name="sctrl" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="picturefile" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="remark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="cruser" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="crdate" Type="DateTime" Precision="3" />
+          <Property Name="eduser" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="eddate" Type="DateTime" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="MISModelStoreContainer" CdmEntityContainer="MISEntities">
-          <EntitySetMapping Name="Album">
-            <EntityTypeMapping TypeName="MISModel.Album">
-              <MappingFragment StoreEntitySet="Album">
-                <ScalarProperty Name="SN" ColumnName="SN" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Permission" ColumnName="Permission" />
-                <ScalarProperty Name="Path1" ColumnName="Path1" />
-                <ScalarProperty Name="Path2" ColumnName="Path2" />
-                <ScalarProperty Name="Picture" ColumnName="Picture" />
-                <ScalarProperty Name="download" ColumnName="download" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Comm_Account">
             <EntityTypeMapping TypeName="MISModel.Comm_Account">
               <MappingFragment StoreEntitySet="Comm_Account">
@@ -90,6 +118,40 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SN" ColumnName="SN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Album">
+            <EntityTypeMapping TypeName="MISModel.Album">
+              <MappingFragment StoreEntitySet="Album">
+                <ScalarProperty Name="eddate" ColumnName="eddate" />
+                <ScalarProperty Name="eduser" ColumnName="eduser" />
+                <ScalarProperty Name="crdate" ColumnName="crdate" />
+                <ScalarProperty Name="cruser" ColumnName="cruser" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="sctrl" ColumnName="sctrl" />
+                <ScalarProperty Name="download" ColumnName="download" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="Permission" ColumnName="Permission" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SN" ColumnName="SN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AlbumPicture">
+            <EntityTypeMapping TypeName="MISModel.AlbumPicture">
+              <MappingFragment StoreEntitySet="AlbumPicture">
+                <ScalarProperty Name="eddate" ColumnName="eddate" />
+                <ScalarProperty Name="eduser" ColumnName="eduser" />
+                <ScalarProperty Name="crdate" ColumnName="crdate" />
+                <ScalarProperty Name="cruser" ColumnName="cruser" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="picturefile" ColumnName="picturefile" />
+                <ScalarProperty Name="path" ColumnName="path" />
+                <ScalarProperty Name="sctrl" ColumnName="sctrl" />
+                <ScalarProperty Name="idnum" ColumnName="idnum" />
                 <ScalarProperty Name="SN" ColumnName="SN" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -33,15 +33,22 @@ namespace MyAlbum.Controllers
         [HttpPost]
         public ActionResult Albumname(string filename)
         {
-            //先判斷filename
-            //string path = "D:\\DataSource\\Album\\" + filename;
+            if (string.IsNullOrEmpty(filename))
+                return Json("相簿名稱必填!!");
+            if (Request.Files.Count == 0)
+                return Json("沒有上傳的照片!!");
 
+            string datename = DateTime.Now.ToString("yyyyMMdd") + "_";
+            filename = datename + filename;
+
+            //先判斷filename
             string path = "D:\\DataSource\\Album\\" + filename;
 
-            if (Directory.Exists(path))
-            {
+            // 有存在且沒有關閉的相簿
+            List<Album> Album_Select = new selectModel().AlbumSelect(filename);
+
+            if (Directory.Exists(path) && Album_Select.Count > 0)
                 return Json("The filename has existed");
-            }
             else
             {
                 // create Album
@@ -53,6 +60,17 @@ namespace MyAlbum.Controllers
                 Directory.CreateDirectory(Albumname_big);
                 Directory.CreateDirectory(Albumname_smail);
 
+                Album Album = new Album();
+                Album.Name = filename;
+                Album.Path = path;
+                Album.sctrl = "N";
+                Album.crdate = DateTime.Now;
+                // Create Album into Datatable
+                new crudModel().AlbumCreate(Album);
+                // find the max SN
+                int SN = new selectModel().NewSN();
+
+                int idnum = 1;
                 foreach (string file in Request.Files)
                 {
                     // 先save原圖
@@ -68,6 +86,15 @@ namespace MyAlbum.Controllers
                         {
                             stream.CopyTo(fileStream);
                         }
+                        AlbumPicture AlbumPicture = new AlbumPicture();
+                        AlbumPicture.SN = SN;
+                        AlbumPicture.idnum = idnum;
+                        AlbumPicture.picturefile = fileName;
+                        AlbumPicture.path = path_big;
+                        AlbumPicture.sctrl = "N";
+                        AlbumPicture.crdate = DateTime.Now;
+                        new crudModel().PictureCreate(AlbumPicture);
+
                         //如果有copy檔案的話要歸零
                         stream.Position = 0;
                         #region
@@ -113,12 +140,37 @@ namespace MyAlbum.Controllers
 
                         // 抓大圖壓縮成小圖==========================================================================
                         var path_smail = Albumname_smail + "\\" + fileName.ToString();
-                        int scale = 5;                        
+
                         // 不要宣告Bitmap，因為屬性Server.MapPath無法存外部
                         Image img = Image.FromFile(path_big);
                         // 長寬
-                        int width = img.Width / scale;
-                        int height = img.Height / scale;
+                        int width = 0;
+                        int height = 0;
+
+                        if (img.Width < 400 && img.Height < 400)
+                        {
+                            width = img.Width;
+                            height = img.Height;
+                        }
+                        else
+                        {
+                            if (img.Width > img.Height)
+                            {
+                                width = 400;
+                                height = img.Height / (img.Width / width);
+                            }
+                            else if (img.Width < img.Height)
+                            {
+                                height = 400;
+                                width = img.Width / (img.Height / height);
+                            }
+                            else
+                            {
+                                width = 400;
+                                height = 400;
+                            }
+                        }
+
                         Image imgNew = new Bitmap(width, height);
                         // 宣告繪圖UI
                         Graphics g = Graphics.FromImage(imgNew);
@@ -129,6 +181,8 @@ namespace MyAlbum.Controllers
 
                         // Image可存外部
                         imgNew.Save(path_smail + fileName.ToString(), ImageFormat.Jpeg);
+
+                        idnum++;
                     }
                 }
                 return Json("filename Successed");

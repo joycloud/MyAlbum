@@ -1,20 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="MISModelStoreContainer" CdmEntityContainer="MISEntities">
-    <EntitySetMapping Name="Album">
-      <EntityTypeMapping TypeName="MISModel.Album">
-        <MappingFragment StoreEntitySet="Album">
-          <ScalarProperty Name="SN" ColumnName="SN" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-          <ScalarProperty Name="Permission" ColumnName="Permission" />
-          <ScalarProperty Name="Path1" ColumnName="Path1" />
-          <ScalarProperty Name="Path2" ColumnName="Path2" />
-          <ScalarProperty Name="Picture" ColumnName="Picture" />
-          <ScalarProperty Name="download" ColumnName="download" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Comm_Account">
       <EntityTypeMapping TypeName="MISModel.Comm_Account">
         <MappingFragment StoreEntitySet="Comm_Account">
@@ -22,6 +8,40 @@
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SN" ColumnName="SN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Album">
+      <EntityTypeMapping TypeName="MISModel.Album">
+        <MappingFragment StoreEntitySet="Album">
+          <ScalarProperty Name="eddate" ColumnName="eddate" />
+          <ScalarProperty Name="eduser" ColumnName="eduser" />
+          <ScalarProperty Name="crdate" ColumnName="crdate" />
+          <ScalarProperty Name="cruser" ColumnName="cruser" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="sctrl" ColumnName="sctrl" />
+          <ScalarProperty Name="download" ColumnName="download" />
+          <ScalarProperty Name="Path" ColumnName="Path" />
+          <ScalarProperty Name="Permission" ColumnName="Permission" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SN" ColumnName="SN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AlbumPicture">
+      <EntityTypeMapping TypeName="MISModel.AlbumPicture">
+        <MappingFragment StoreEntitySet="AlbumPicture">
+          <ScalarProperty Name="eddate" ColumnName="eddate" />
+          <ScalarProperty Name="eduser" ColumnName="eduser" />
+          <ScalarProperty Name="crdate" ColumnName="crdate" />
+          <ScalarProperty Name="cruser" ColumnName="cruser" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="picturefile" ColumnName="picturefile" />
+          <ScalarProperty Name="path" ColumnName="path" />
+          <ScalarProperty Name="sctrl" ColumnName="sctrl" />
+          <ScalarProperty Name="idnum" ColumnName="idnum" />
           <ScalarProperty Name="SN" ColumnName="SN" />
         </MappingFragment>
       </EntityTypeMapping>

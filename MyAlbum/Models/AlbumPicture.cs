@@ -12,15 +12,13 @@ namespace MyAlbum.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Album
+    public partial class AlbumPicture
     {
         public int SN { get; set; }
-        public string Name { get; set; }
-        public string Password { get; set; }
-        public Nullable<int> Permission { get; set; }
-        public string Path { get; set; }
-        public string download { get; set; }
+        public int idnum { get; set; }
         public string sctrl { get; set; }
+        public string path { get; set; }
+        public string picturefile { get; set; }
         public string remark { get; set; }
         public string cruser { get; set; }
         public Nullable<System.DateTime> crdate { get; set; }

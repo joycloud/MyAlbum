@@ -1,21 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="MISModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="Album">
-    <Key>
-      <PropertyRef Name="SN" />
-    </Key>
-    <Property Name="SN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Permission" Type="Int32" />
-    <Property Name="Path1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Path2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="download" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-  </EntityType>
   <EntityContainer Name="MISEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Album" EntityType="Self.Album" />
     <EntitySet Name="Comm_Account" EntityType="MISModel.Comm_Account" />
+    <EntitySet Name="Album" EntityType="MISModel.Album" />
+    <EntitySet Name="AlbumPicture" EntityType="MISModel.AlbumPicture" />
   </EntityContainer>
   <EntityType Name="Comm_Account">
     <Key>
@@ -26,5 +14,38 @@
     <Property Name="ID" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Permission" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Album">
+    <Key>
+      <PropertyRef Name="SN" />
+    </Key>
+    <Property Name="SN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Permission" Type="Int32" />
+    <Property Name="Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="download" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="sctrl" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="remark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="cruser" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="crdate" Type="DateTime" Precision="3" />
+    <Property Name="eduser" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="eddate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="AlbumPicture">
+    <Key>
+      <PropertyRef Name="SN" />
+      <PropertyRef Name="idnum" />
+    </Key>
+    <Property Name="SN" Type="Int32" Nullable="false" />
+    <Property Name="idnum" Type="Int32" Nullable="false" />
+    <Property Name="sctrl" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="picturefile" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="remark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="cruser" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="crdate" Type="DateTime" Precision="3" />
+    <Property Name="eduser" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="eddate" Type="DateTime" Precision="3" />
   </EntityType>
 </Schema>
