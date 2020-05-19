@@ -11,7 +11,8 @@ namespace MyAlbum
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                        "~/Scripts/jquery-3.2.0.min.js",
                        "~/Scripts/jquery.fancybox.min.js",
-                       "~/Scripts/eventjs.js"));
+                       "~/Scripts/eventjs.js",
+                       "~/Scripts/pictools.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));

@@ -27,7 +27,7 @@
             <PropertyRef Name="SN" />
             <PropertyRef Name="idnum" />
           </Key>
-          <Property Name="SN" Type="int" Nullable="false" />
+          <Property Name="SN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idnum" Type="int" Nullable="false" />
           <Property Name="sctrl" Type="varchar" MaxLength="1" />
           <Property Name="path" Type="nvarchar(max)" />
@@ -94,7 +94,7 @@
             <PropertyRef Name="SN" />
             <PropertyRef Name="idnum" />
           </Key>
-          <Property Name="SN" Type="Int32" Nullable="false" />
+          <Property Name="SN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="idnum" Type="Int32" Nullable="false" />
           <Property Name="sctrl" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
