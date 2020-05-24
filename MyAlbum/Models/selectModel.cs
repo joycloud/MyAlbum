@@ -15,14 +15,21 @@ namespace MyAlbum.Models
             return data;
         }
         // 取最新SNid
-        public int NewSN()
+        public int NewSN(string newfilename)
         {
-            int SN = 0;
-            if (db.Album.Count() > 0)
-                SN = db.Album.Select(s => s.SN).Max();
-            else
-                SN = 1;
+            int SN = 1;
+            if (db.Album.Where(o => o.Name == newfilename).Count() > 0)
+                SN = db.Album.Where(o => o.Name == newfilename).Select(s => s.SN).FirstOrDefault();
             return SN;
+        }
+
+        public int idnum(int SN)
+        {
+            int num = 1;
+            if (db.AlbumPicture.Where(o => o.SN == SN).Select(o => o.idnum).Count() > 0)
+                num = db.AlbumPicture.Where(o => o.SN == SN).Select(o => o.idnum).Max() + 1;
+            return num;
+
         }
     }
 }

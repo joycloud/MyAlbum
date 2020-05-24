@@ -22,7 +22,7 @@
       <PropertyRef Name="SN" />
       <PropertyRef Name="idnum" />
     </Key>
-    <Property Name="SN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SN" Type="int" Nullable="false" />
     <Property Name="idnum" Type="int" Nullable="false" />
     <Property Name="sctrl" Type="varchar" MaxLength="1" />
     <Property Name="path" Type="nvarchar(max)" />

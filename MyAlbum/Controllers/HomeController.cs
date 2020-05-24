@@ -79,9 +79,9 @@ namespace MyAlbum.Controllers
                 return Json("沒有上傳的照片!!");
 
             // find the max SN
-            int SN = new selectModel().NewSN();
+            int SN = new selectModel().NewSN(newfilename);
 
-            int idnum = 1;
+            
             foreach (string file in Request.Files)
             {
                 // 先save原圖
@@ -97,6 +97,8 @@ namespace MyAlbum.Controllers
                     {
                         stream.CopyTo(fileStream);
                     }
+
+                    int idnum = new selectModel().idnum(SN);
                     AlbumPicture AlbumPicture = new AlbumPicture();
                     AlbumPicture.SN = SN;
                     AlbumPicture.idnum = idnum;
@@ -192,7 +194,6 @@ namespace MyAlbum.Controllers
 
                     // Image可存外部
                     imgNew.Save(path_smail + fileName.ToString(), ImageFormat.Jpeg);
-
                     idnum++;
                 }
             }

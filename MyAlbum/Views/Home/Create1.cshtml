@@ -12,10 +12,33 @@
         let idd = $(id).parent()[0].id;
         let iddname = $('#' + idd).attr('name');
 
+        console.log(id);
+        console.log(idd);
+        console.log(iddname);
+
+        // indexOf method in object array
+        let pos = array.map(function (e) {
+            return e.name;
+        }).indexOf(iddname);
+
+        // delete array
+        array.splice(pos, 1);
+
+        //let i = 0;
+        //for (let pic of array) {
+        //    if (pic.name == iddname)
+        //        break;
+        //    else
+        //        i++;
+        //}
+        //console.log(i);
+
+
         // 依照檔名刪除陣列
         fd.delete(iddname);
         $('#' + idd).remove();
     });
+
 </script>
 
 <div id="DIV1">

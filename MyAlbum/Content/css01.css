@@ -3,7 +3,7 @@
 #dropDIV {
     min-height: 100%;
     width: 100%;
-    height: 80%;
+    height: 250px;
     border: 1px dashed #bbbbbbda;
     border-radius: 5px;
     padding: 20px;
@@ -17,6 +17,7 @@
 img {
     max-height: 150px;
     max-width: 250px;
+    opacity: 0.5;
 }
 
 .photo-list {
@@ -87,22 +88,21 @@ img {
 #progress_bar {
     margin: 10px 0;
     padding: 3px;
-    border: 1px solid #000;
-    font-size: 14px;
+    font-size: 5px;
     clear: both;
-    opacity: 0;
+    opacity: 1;
     transition: opacity 1s linear;
 }
 
-    #progress_bar.loading {
-        opacity: 1.0;
+    /*#progress_bar.loading {
+        opacity: 0.4;
     }
 
     #progress_bar .percent {
         background-color: #99ccff;
         height: auto;
         width: 0;
-    }
+    }*/
 
 .loading::after {
     content: " ";

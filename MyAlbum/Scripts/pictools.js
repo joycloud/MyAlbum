@@ -10,43 +10,48 @@ function dropHandler(evt) {//evt 為 DragEvent 物件
 
     for (let i in files) {
         if (files[i].type == 'image/png' || files[i].type == 'image/jpeg') {
-
             let pics = {
                 name: files[i].name,
                 files: files[i]
             }
             array.push(pics);
-
+            
             //將圖片在頁面預覽
             let fr = new FileReader();
             fr.onload = openfile(files[i]);
             fr.readAsDataURL;
             //新增上傳檔案，上傳後名稱為圖檔的陣列
             fd.append(files[i].name, files[i]);
-            aa++;
         }
     }
 }
 
-var count = 0;
 async function openfile(tr) {
     // await優先跑這段
     let img = await toBase64(tr);//將圖片轉成base64
     let imgx = document.createElement('img');
     imgx.style.margin = "10px";
     imgx.src = img;
+    
+    let listname = tr.name.replace('.', '_');
+    imgx.id = listname;
 
     let photo = $(document.createElement('div')).attr({
         "class": 'photo-list',
-        "id": 'list-' + count,
+        "id": 'list-' + listname,
         "name": tr.name
     });
 
     $('#imgDIV').append(photo);
-    photo.append('<div class="close" id="close-' + count + '"></div>');
+    photo.append('<div class="close" id="close-' + listname + '"></div>');
     photo.append(imgx);
-    photo.append('<div class="progress-label"></div> <div id="progress_bar"><div class="loading">0%</div></div>');
-    count++;
+    photo.append('<div id="progress-' + tr.name + '">0%</div>');
+
+    //var node = document.createElement("div");
+    //node.className = "loading";
+    //node.id = loadong;
+    //document.getElementById('list-' + listname).appendChild(node);
+
 }
 
 // 抓file的內容
@@ -60,7 +65,7 @@ const toBase64 = file => new Promise((resolve, reject) => {
 
 async function Upload() {
     let i = 0;
-    for (var pair of fd.entries()) {
+    for (let pic of array) {
         i++;
     }
 
@@ -75,16 +80,40 @@ async function Upload() {
         }
         else {
             for (let pic of array) {
+                let progress = 'progress-' + pic.name;
+                let loading = 'loa-' + pic.name;
+
+                let f = document.getElementById(progress);
+
+                //console.log(pic.name);
+
+                let listname = 'list-' + pic.name.replace('.', '_');
+                let loadong = "loading-" + pic.name.replace('.', '_');
+                console.log(listname);
+
+
+                var node = document.createElement("div");
+                node.className = "loading";
+                node.id = loadong;
+                document.getElementById(listname).appendChild(node);
+
                 let newfilename = mes1.replace('Albumname Successed;', '');
-                console.log(newfilename);
                 mes2 = await Pictures(newfilename, pic);
+
+                // delete loading when upload was Successed
+                if (mes2 != 'fales error!!') {
+                    f.innerHTML = 'OK';
+                    document.getElementById(listname).children[1].style.opacity = 1
+                    document.getElementById(loadong).remove();
+                    //fa.remove();
+                }
             }
             alert('Successed');
         }
     }
 }
 
-let Albumname = (filename) => {    
+let Albumname = (filename) => {
     let mes = '';
     $.ajax({
         type: "POST",
@@ -105,10 +134,9 @@ let Albumname = (filename) => {
 };
 
 let Pictures = (newfilename, pic) => {
-    let fdd = new FormData();   
+    let fdd = new FormData();
     fdd.append(pic.name, pic.files);
 
-    console.log(pic);
     $.ajax({
         type: "POST",
         // 預設true，是同步執行狀態，false非同步執行完成才往下跑
@@ -125,6 +153,32 @@ let Pictures = (newfilename, pic) => {
             mes = 'fales error!!';
         }
     });
+
+
+
+    //div.innerHTML = ['<p class="loading"></>'];
+
+    //fetch('/Home/Pictures?newfilename=' + newfilename, {
+    //    method: 'POST',
+    //    body: fdd
+    //}).then(res => {
+    //    let fr = new FileReader();
+    //    document.getElementById(div.id).innerHTML = "";
+    //    if (t === "img") {
+    //        fr.onload = async () => {
+    //            let fileTag = await createImgTag(files);
+    //            document.getElementById(div.id).appendChild(fileTag);
+    //        };
+    //    }
+    //    else if (t === "Doc" || t === "Compression") {
+    //        tagSrc = getTagSrc(fileName);
+    //        fr.onload = createTag(fileName, tagSrc, div.id);
+    //    }
+
+    //    fr.readAsDataURL(files);
+    //});
+
+    //return errorFileName;
 };
 
     //if (filename.length == 0)
