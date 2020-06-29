@@ -30,7 +30,9 @@ namespace MyAlbum
                       "~/Content/site.css",
                       "~/Content/sitebody.css",
                       "~/Content/jquery.fancybox.min.css",
-                      "~/Content/css01.css"));
+                      "~/Content/css01.css",
+                      "~/Content/reset.css",
+                      "~/Content/Multi-columns.css"));
         }
     }
 }

@@ -14,7 +14,12 @@
     font-size: 20px;
 }
 
-img {
+.Albumpic {
+    max-height: 150px;
+    max-width: 250px;
+}
+
+.imgs {
     max-height: 150px;
     max-width: 250px;
     opacity: 0.5;

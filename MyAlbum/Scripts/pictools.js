@@ -9,13 +9,14 @@ function dropHandler(evt) {//evt 為 DragEvent 物件
     let files = evt.dataTransfer.files;//由DataTransfer物件的files屬性取得檔案物件
 
     for (let i in files) {
+        
         if (files[i].type == 'image/png' || files[i].type == 'image/jpeg') {
             let pics = {
                 name: files[i].name,
                 files: files[i]
             }
             array.push(pics);
-            
+            console.log(pics);
             //將圖片在頁面預覽
             let fr = new FileReader();
             fr.onload = openfile(files[i]);
@@ -32,9 +33,10 @@ async function openfile(tr) {
     let imgx = document.createElement('img');
     imgx.style.margin = "10px";
     imgx.src = img;
-    
+    imgx.className = "imgs";
     let listname = tr.name.replace('.', '_');
     imgx.id = listname;
+    
 
     let photo = $(document.createElement('div')).attr({
         "class": 'photo-list',
@@ -46,12 +48,6 @@ async function openfile(tr) {
     photo.append('<div class="close" id="close-' + listname + '"></div>');
     photo.append(imgx);
     photo.append('<div id="progress-' + tr.name + '">0%</div>');
-
-    //var node = document.createElement("div");
-    //node.className = "loading";
-    //node.id = loadong;
-    //document.getElementById('list-' + listname).appendChild(node);
-
 }
 
 // 抓file的內容
@@ -81,20 +77,13 @@ async function Upload() {
         else {
             for (let pic of array) {
                 let progress = 'progress-' + pic.name;
-                let loading = 'loa-' + pic.name;
-
                 let f = document.getElementById(progress);
-
-                //console.log(pic.name);
-
                 let listname = 'list-' + pic.name.replace('.', '_');
-                let loadong = "loading-" + pic.name.replace('.', '_');
-                console.log(listname);
-
-
+                let loading = "loading-" + pic.name.replace('.', '_');
+                
                 var node = document.createElement("div");
                 node.className = "loading";
-                node.id = loadong;
+                node.id = loading;
                 document.getElementById(listname).appendChild(node);
 
                 let newfilename = mes1.replace('Albumname Successed;', '');
@@ -104,8 +93,7 @@ async function Upload() {
                 if (mes2 != 'fales error!!') {
                     f.innerHTML = 'OK';
                     document.getElementById(listname).children[1].style.opacity = 1
-                    document.getElementById(loadong).remove();
-                    //fa.remove();
+                    document.getElementById(loading).remove();
                 }
             }
             alert('Successed');

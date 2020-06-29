@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "AlbumView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var files = ViewBag.h;
+    //var path = ViewBag.path;
+}
+
+<h2>AlbumView</h2>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<link href="https://unpkg.com/nanogallery2/dist/css/nanogallery2.min.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="https://unpkg.com/nanogallery2/dist/jquery.nanogallery2.min.js"></script>
+
+
+@*<div class="grid" padding:5px 10px;>
+        @{
+            foreach (var image in ViewBag.Libs)
+            {
+                <div class="item">
+                    <img src=@Url.Content(image.Path) class="Albumpic" alt="" />
+                </div>
+            }
+        }
+    </div>*@
+
+<script type="text/javascript" src="https://unpkg.com/nanogallery2/dist/jquery.nanogallery2.min.js"></script>
+<div id="nanogallery1"></div>
+<script>
+    $("#nanogallery1").nanogallery2({
+        thumbnailHeight: 200,
+        thumbnailWidth: "auto",
+        galleryLastRowFull: true,
+        items: [{
+     @{
+         foreach (var image in ViewBag.Libs)
+         {
+         src: @Url.Content(image.Path);
+         srct: @Url.Content(image.Path);
+         }
+     }
+
+        }]
+    });
+</script>
