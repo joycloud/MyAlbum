@@ -12,7 +12,13 @@ namespace MyAlbum
                        "~/Scripts/jquery-3.2.0.min.js",
                        "~/Scripts/jquery.fancybox.min.js",
                        "~/Scripts/eventjs.js",
-                       "~/Scripts/pictools.js"));
+                       "~/Scripts/pictools.js",
+                       //"~/Scripts/aos.js",
+                       "~/Scripts/owl.carousel.min.js",
+                       "~/Scripts/jquery.sticky.js",
+                       "~/Scripts/jquery.easing.min.js",
+                       "~/Scripts/baguetteBox.min.js",
+                       "~/Scripts/main.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -23,16 +29,20 @@ namespace MyAlbum
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/bootstrap.bundle.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/sitebody.css",
                       "~/Content/jquery.fancybox.min.css",
-                      "~/Content/css01.css",
+                      //"~/Content/css01.css",
                       "~/Content/reset.css",
-                      "~/Content/Multi-columns.css"));
+                      "~/Content/baguetteBox.css",
+                      "~/Content/bootstrap-4.3.1.min.css"
+                      //"~/Content/Multi-columns.css"
+                      ));
         }
     }
 }

@@ -1,0 +1,61 @@
+﻿
+@{
+    Layout = null;
+    var pic = ViewBag.pic;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    <meta name="viewport" content="width=device-width" />
+    <title>ShowPics</title>
+
+    @*<style>
+            .ui-resizable-helper {
+                border: 2px dotted #00F;
+            }
+
+            th {
+                border: 1px solid #000;
+                padding: 5px;
+                height: 15px !important;
+                overflow: hidden;
+                text-overflow: clip;
+                white-space: nowrap;
+                text-align: left;
+            }
+
+            .table td {
+                height: 30px;
+                /*border: 1px solid #000;*/
+                padding: 1px;
+                overflow: hidden;
+                text-overflow: clip;
+                text-align: left;
+            }
+
+                .table td > input {
+                    width: 100px;
+                }
+
+            #edit_input {
+                height: 100%;
+                width: 100%;
+            }
+
+            #btnAdd {
+                float: right;
+            }
+        </style>*@
+</head>
+
+<body>
+    <div>
+        <img src=@pic alt="" />
+    </div>
+</body>
+</html>

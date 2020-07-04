@@ -12,7 +12,8 @@ namespace MyAlbum.Entities
         public class ImgLib
         {
             public string Filename { get; set; }
-            public string Path { get; set; }
+            public string smPath { get; set; }
+            public string bigPath { get; set; }
         }
 
         public List<ImgLib> ImageLibs(List<String> paths)
@@ -26,7 +27,7 @@ namespace MyAlbum.Entities
                 string finpath = "~" + item.Substring(i, item.Length - i );
                 string[] sArray = item.ToString().Split('\\');
                 int count = sArray.Count();
-                List.Add(new ImgLib { Filename = sArray[count - 1].ToString(), Path = finpath });
+                List.Add(new ImgLib { Filename = sArray[count - 1].ToString(), smPath = finpath , bigPath  = finpath.Replace("smail","big") });
             }
 
             return List;

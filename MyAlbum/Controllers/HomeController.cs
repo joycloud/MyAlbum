@@ -63,7 +63,7 @@ namespace MyAlbum.Controllers
                 paths.Add(filePaths[0].ToString());
             }
 
-             ImgLibEntity lib = new ImgLibEntity();
+            ImgLibEntity lib = new ImgLibEntity();
             ViewBag.Libs = lib.ImageLibs(paths);
             return View();
 
@@ -346,6 +346,12 @@ namespace MyAlbum.Controllers
             // Image可存外部
             imgNew.Save(path_smail, ImageFormat.Jpeg);
             //idnum++;
+        }
+
+        public ActionResult ShowPics(string bigPath)
+        {
+            ViewBag.pic = bigPath;
+            return View();
         }
 
 

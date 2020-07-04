@@ -23,8 +23,12 @@
     }
 }
 
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<body data-aos-easing="slide" data-aos-duration="800" data-aos-delay="0">
+    @*<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    
+          
+
+
         <button class="navbar-toggler" data-toggle="collapse" data-target="#layoutNavbarSupportedContent"
                 aria-controls="layoutNavbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -32,8 +36,6 @@
         <div class="collapse navbar-collapse" id="layoutNavbarSupportedContent">
             <ul class="nav navbar-nav">
                 <li class="nav-item">@Html.ActionLink("首頁", "Index", "Account", new { @class = "nav-link" })</li>
-                @*<li class="nav-item">@Html.ActionLink("關於", "About", "Account", new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("連絡人", "Contact", "Account", new { @class = "nav-link" })</li>*@
             </ul>
             <partial name="_LoginPartial" />
         </div>
@@ -51,12 +53,18 @@
                 </li>
             </ul>
         </div>
-    </nav>
+    </nav>*@
     <div class="container body-content">
         @RenderBody()
-        @*<footer>
-            <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 應用程式</p>
-        </footer>*@
     </div>
 </body>
+
+
+@*<body data-aos-easing="slide" data-aos-duration="800" data-aos-delay="0">
+    <div class="site-section">
+        <div class="container gallery-container">
+
+        </div>
+    </div>
+</body>*@
 </html>

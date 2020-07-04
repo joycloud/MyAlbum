@@ -51,6 +51,8 @@ C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\bin\roslyn\vbc.rsp
 C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\bin\roslyn\VBCSCompiler.exe
 C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\bin\Antlr3.Runtime.dll
+C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\bin\EntityFramework.dll
+C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\bin\EntityFramework.SqlServer.dll
 C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\bin\Newtonsoft.Json.dll
@@ -65,6 +67,8 @@ C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\bin\System.Web.WebPag
 C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\bin\System.Web.WebPages.dll
 C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\bin\System.Web.WebPages.Razor.dll
 C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\bin\WebGrease.dll
+C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\bin\EntityFramework.xml
+C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\bin\EntityFramework.SqlServer.xml
 C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\bin\System.Web.Helpers.xml
 C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\bin\System.Web.Mvc.xml
 C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\bin\System.Web.Optimization.xml
@@ -78,6 +82,8 @@ C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\bin\System.Net.Http.F
 C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\bin\System.Web.Http.xml
 C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\bin\System.Web.Http.WebHost.xml
 C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\bin\zh-Hant\EntityFramework.resources.dll
+C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\bin\zh-Hant\EntityFramework.SqlServer.resources.dll
 C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\bin\zh-Hant\System.Web.Helpers.resources.dll
 C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\bin\zh-Hant\System.Web.Mvc.resources.dll
 C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\bin\zh-Hant\System.Web.Optimization.resources.dll
@@ -91,10 +97,3 @@ C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\bin\zh-Hant\System.We
 C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\obj\Debug\MyAlbum.csproj.CopyComplete
 C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\obj\Debug\MyAlbum.dll
 C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\obj\Debug\MyAlbum.pdb
-C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\bin\EntityFramework.dll
-C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\bin\EntityFramework.SqlServer.dll
-C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\bin\EntityFramework.xml
-C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\bin\EntityFramework.SqlServer.xml
-C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\bin\zh-Hant\EntityFramework.resources.dll
-C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\bin\zh-Hant\EntityFramework.SqlServer.resources.dll
-C:\Users\b2551\OneDrive\桌面\MyGitKraken\MyAlbum\MyAlbum\obj\Debug\MyAlbum.csprojAssemblyReference.cache

@@ -8,38 +8,33 @@
 
 <h2>AlbumView</h2>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-<link href="https://unpkg.com/nanogallery2/dist/css/nanogallery2.min.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="https://unpkg.com/nanogallery2/dist/jquery.nanogallery2.min.js"></script>
-
-
-@*<div class="grid" padding:5px 10px;>
-        @{
-            foreach (var image in ViewBag.Libs)
-            {
-                <div class="item">
-                    <img src=@Url.Content(image.Path) class="Albumpic" alt="" />
-                </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("[data-fancybox]").fancybox({
+            afterClose: function () {
+                history.go(0);
             }
-        }
-    </div>*@
-
-<script type="text/javascript" src="https://unpkg.com/nanogallery2/dist/jquery.nanogallery2.min.js"></script>
-<div id="nanogallery1"></div>
-<script>
-    $("#nanogallery1").nanogallery2({
-        thumbnailHeight: 200,
-        thumbnailWidth: "auto",
-        galleryLastRowFull: true,
-        items: [{
-     @{
-         foreach (var image in ViewBag.Libs)
-         {
-         src: @Url.Content(image.Path);
-         srct: @Url.Content(image.Path);
-         }
-     }
-
-        }]
+        });
     });
 </script>
+<div class="site-section">
+    <div class="container gallery-container">
+        <div class="tz-gallery">
+            <div class="row">
+                @{
+                    foreach (var image in ViewBag.Libs)
+                    {
+                        <div class="col-sm-6 col-md-3">
+                            <a href="~/Home/ShowPics?bigPath=@Url.Content(image.bigPath)"
+                               data-fancybox data-options='{"type" : "iframe", "iframe" : {"preload" : false,
+                                                            "css" : {"width" : "800","height" : "500"}}}'>
+
+                                <img src=@Url.Content(image.smPath) class="img-fluid img-thumbnail" alt="" />
+                            </a>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
